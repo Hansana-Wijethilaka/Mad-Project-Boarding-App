@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BoadMe</string>
+    <string name="owner_name">Owner Name</string>
+    <string name="owner_name_edit" />
+    <string name="hostal_location">Hostal Loccation</string>
+    <string name="hostal_location_edit" />
+    <string name="phone_num">Phone Number</string>
+    <string name="phone_num_edit" />
+    <string name="owner_email">Email</string>
+    <string name="owner_email_edit" />
+    <string name="address">Address</string>
+    <string name="address_edit" />
+    <string name="number_of_room">Number of Room</string>
+    <string name="number_of_room_edit" />
+    <string name="price">Price</string>
+    <string name="price_edit" />
+</resources>
