@@ -9,16 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Addhostal">
+        <activity android:name=".Hostal_listviewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Edit_hostalActivity" />
+        <activity android:name=".Addhostal">
 
         </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
