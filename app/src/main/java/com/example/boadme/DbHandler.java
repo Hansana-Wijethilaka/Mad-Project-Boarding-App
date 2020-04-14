@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DbHandler extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
@@ -89,6 +92,37 @@ public class DbHandler extends SQLiteOpenHelper {
 
         Cursor cursor = sqLiteDatabase.rawQuery(query,null);
         return cursor.getCount();
+    }
+
+    public List<Hostal> getAllHostal(){
+
+        List<Hostal> hostals = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        String query = "SELECT * FROM "+TABLE_NAME;
+
+        Cursor cursor = sqLiteDatabase.rawQuery(query,null);
+
+        if (cursor.moveToFirst()){
+            do {
+
+                Hostal hostal = new Hostal();
+
+                hostal.setId(cursor.getInt(0));
+                hostal.setOwner_name(cursor.getString(1));
+                hostal.setHostal_location(cursor.getString(2));
+                hostal.setPhone_num(cursor.getString(3));
+                hostal.setEmail(cursor.getString(4));
+                hostal.setAddress(cursor.getString(5));
+                hostal.setNum_of_rm(cursor.getString(6));
+                hostal.setPrice(cursor.getString(7));
+                hostal.setStarted(cursor.getLong(8));
+                hostal.setFinished(cursor.getLong(9));
+
+                hostals.add(hostal);
+
+            }while (cursor.moveToNext());
+        }
+        return hostals;
     }
 
 }
