@@ -2,6 +2,7 @@ package com.example.boadme;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -81,4 +82,13 @@ public class DbHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
 
     }
+
+    public  int countHostal(){
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        String query = "SELECT * FROM "+ TABLE_NAME;
+
+        Cursor cursor = sqLiteDatabase.rawQuery(query,null);
+        return cursor.getCount();
+    }
+
 }

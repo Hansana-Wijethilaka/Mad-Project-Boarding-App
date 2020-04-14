@@ -3,6 +3,7 @@ package com.example.boadme;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +51,8 @@ public class Addhostal extends AppCompatActivity {
 
                 Hostal hostal = new Hostal(ownername,hostallocation,phonenum,email,address,numofrm,price,started,0);
                 dbHandler.add_Hostal(hostal);
+
+                startActivity(new Intent(context,Hostal_listviewActivity.class));
 
             }
         });
