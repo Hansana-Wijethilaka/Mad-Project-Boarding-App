@@ -125,4 +125,11 @@ public class DbHandler extends SQLiteOpenHelper {
         return hostals;
     }
 
+    public void deleteHostal(int id){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+
+        sqLiteDatabase.delete(TABLE_NAME,"id =?",new String[]{String.valueOf(id)});
+        sqLiteDatabase.close();
+    }
+
 }
