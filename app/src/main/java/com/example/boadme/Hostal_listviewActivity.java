@@ -47,7 +47,7 @@ public class Hostal_listviewActivity extends AppCompatActivity {
         listview.setAdapter(hostalAdapter);
 
         int count_Hostal = dbHandler.countHostal();
-        count.setText("You have "+count_Hostal+ " Hostal");
+        count.setText("Available "+count_Hostal+ " Hostal");
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +86,11 @@ public class Hostal_listviewActivity extends AppCompatActivity {
                 builder.setNeutralButton("Update", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(context,Edit_hostalActivity.class));
+                        Intent intent = new Intent(context, Edit_hostalActivity.class);
+                        intent.putExtra("id", String.valueOf(hostal.getId()));
+                        startActivity(intent);
+
+
                     }
                 });
 

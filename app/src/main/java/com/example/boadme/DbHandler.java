@@ -132,4 +132,58 @@ public class DbHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
+    public Hostal getSingaleHostal(int id){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+
+        Cursor cursor = sqLiteDatabase.query(TABLE_NAME, new String[]{ID,OWNER_NAME,HOSTAL_LOCATION,PHONE_NUM,
+                        EMAIL,ADDRESS,NUM_OF_RM,PRICE,STARTED,FINISHED},
+                ID + "= ?",new String[]{String.valueOf(id)},null,null,null);
+
+        Hostal hostal;
+
+        if (cursor != null){
+            cursor.moveToFirst();
+           hostal = new Hostal(
+                   cursor.getInt(0),
+                   cursor.getString(1),
+                   cursor.getString(2),
+                   cursor.getString(3),
+                   cursor.getString(4),
+                   cursor.getString(5),
+                   cursor.getString(6),
+                   cursor.getString(7),
+                   cursor.getLong(8),
+                   cursor.getLong(9)
+           );
+           return hostal;
+
+        }
+        return null;
+
+    }
+
+    public int updateHostal(Hostal hostal){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(OWNER_NAME,hostal.getOwner_name());
+        contentValues.put(HOSTAL_LOCATION,hostal.getHostal_location());
+        contentValues.put(PHONE_NUM,hostal.getPhone_num());
+        contentValues.put(EMAIL,hostal.getEmail());
+        contentValues.put(ADDRESS,hostal.getAddress());
+        contentValues.put(NUM_OF_RM,hostal.getNum_of_rm());
+        contentValues.put(PRICE,hostal.getPrice());
+        contentValues.put(STARTED,hostal.getStarted());
+        contentValues.put(FINISHED,hostal.getFinished());
+
+        int status = sqLiteDatabase.update(TABLE_NAME,contentValues,
+                ID +" =?",
+                new String[]{String.valueOf(hostal.getId())});
+
+        sqLiteDatabase.close();
+
+        return status;
+    }
+
 }
