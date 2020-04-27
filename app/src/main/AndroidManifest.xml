@@ -9,17 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Hostal_listviewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".view">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Edit_hostalActivity" />
-        <activity android:name=".Addhostal">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN"/>
 
-        </activity>
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent-filter>
+        </activity >
+
+        <activity android:name=".update" />
+        <activity android:name=".Add" >
+
+        </activity >
         <activity android:name=".MainActivity" />
     </application>
 

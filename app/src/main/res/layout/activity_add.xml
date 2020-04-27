@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".Add">
+
+    <TextView
+        android:id="@+id/head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_booking"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.047" />
+
+    <EditText
+        android:id="@+id/Age"
+        android:layout_width="345dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:hint="@string/Hint3"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:text="@string/age"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Contact_Details"
+        app:layout_constraintVertical_bias="0.027" />
+
+    <EditText
+        android:id="@+id/Contact_Details"
+        android:layout_width="345dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:hint="@string/Hint2"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:text="@string/contact"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Full_Name"
+        app:layout_constraintVertical_bias="0.026" />
+
+    <EditText
+        android:id="@+id/Full_Name"
+        android:layout_width="345dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:hint="@string/Hint1"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:text="@string/name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.151" />
+
+
+    <EditText
+        android:id="@+id/Gender02"
+        android:layout_width="345dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/Hint7"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:text="@string/gen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Age" />
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.445"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.576" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

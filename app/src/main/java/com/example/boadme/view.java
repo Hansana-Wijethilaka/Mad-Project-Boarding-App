@@ -8,21 +8,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hostal_listviewActivity extends AppCompatActivity {
+public class view extends AppCompatActivity {
 
     private Button add;
-    private ListView listview;
-    private TextView count;
+    private ListView listView;
     Context context;
     private DbHandler dbHandler;
     private List<Hostal> hostalList;
@@ -30,33 +26,33 @@ public class Hostal_listviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hostal_listview);
+        setContentView(R.layout.activity_view);
 
         context = this;
         dbHandler = new DbHandler(context);
-        add = findViewById(R.id.add);
 
-        listview = findViewById(R.id.hostal_list);
-        count = findViewById(R.id.hostal_count);
+        add = findViewById(R.id.add1);
+        listView = findViewById(R.id.view);
 
         hostalList = new ArrayList<>();
         hostalList = dbHandler.getAllHostal();
 
-        HostalAdapter hostalAdapter = new HostalAdapter(context,R.layout.singale_hostal,hostalList);
 
-        listview.setAdapter(hostalAdapter);
+        HosAdapter hostalAdapter = new HosAdapter(context,R.layout.activity_list,hostalList);
 
-        int count_Hostal = dbHandler.countHostal();
+        listView.setAdapter(hostalAdapter);
+
+       /* int count_Hostal = dbHandler.countHostal();
         count.setText("Available "+count_Hostal+ " Hostal");
-
+        */
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context,Addhostal.class));
+                startActivity(new Intent(context,Add.class));
             }
         });
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -64,14 +60,18 @@ public class Hostal_listviewActivity extends AppCompatActivity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-                builder.setTitle(hostal.getOwner_name());
-                builder.setMessage(hostal.getHostal_location());
+
+                builder.setTitle(hostal.getName());
+                builder.setMessage(hostal.getContact());
+                //builder.setMessage(hostal.getAge());
+                //builder.setMessage(hostal.getGender());
+
 
 
                 builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(context,Hostal_listviewActivity.class));
+                        startActivity(new Intent(context,view.class));
                     }
                 });
 
@@ -79,15 +79,16 @@ public class Hostal_listviewActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dbHandler.deleteHostal(hostal.getId());
-                        startActivity(new Intent(context,Hostal_listviewActivity.class));
+                        startActivity(new Intent(context,view.class));
                     }
                 });
 
                 builder.setNeutralButton("Update", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(context, Edit_hostalActivity.class);
+                        Intent intent = new Intent(context, update.class);
                         intent.putExtra("id", String.valueOf(hostal.getId()));
+
                         startActivity(intent);
 
 
