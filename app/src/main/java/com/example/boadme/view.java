@@ -22,7 +22,7 @@ public class view extends AppCompatActivity {
     private ListView listView;
     Context context;
     private DbHandler dbHandler;
-    private List<Booking> hostalList;
+    private List<Booking> hosList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +35,13 @@ public class view extends AppCompatActivity {
         add = findViewById(R.id.add1);
         listView = findViewById(R.id.view);
 
-        hostalList = new ArrayList<>();
-        hostalList = dbHandler.getAllBooking();
+        hosList = new ArrayList<>();
+        hosList = dbHandler.getAllBooking();
 
 
-        HosAdapter hostalAdapter = new HosAdapter(context,R.layout.activity_list,hostalList);
+        HosAdapter hosAdapter = new HosAdapter(context,R.layout.activity_list,hosList);
 
-        listView.setAdapter(hostalAdapter);
+        listView.setAdapter(hosAdapter);
 
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +55,7 @@ public class view extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                final Booking booking = hostalList.get(i);
+                final Booking booking = hosList.get(i);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
