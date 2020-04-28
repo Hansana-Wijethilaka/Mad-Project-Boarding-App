@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class Add extends AppCompatActivity {
@@ -52,8 +50,7 @@ public class Add extends AppCompatActivity {
                 String user_contact = contact1.getText().toString();
                 String user_age = age1.getText().toString();
                 String user_gender = gender1.getText().toString();
-                //      RadioButton checkBtn = findViewById(gender1.getCheckedRadioButtonId());
-                //   String gender2  = checkBtn.getText().toString();
+
                 long started = System.currentTimeMillis();
 
                 Booking booking = new Booking(user_name,user_contact,user_age,user_gender,started,0);

@@ -43,9 +43,7 @@ public class view extends AppCompatActivity {
 
         listView.setAdapter(hostalAdapter);
 
-       /* int count_Hostal = dbHandler.countHostal();
-        count.setText("Available "+count_Hostal+ " Hostal");
-        */
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,8 +62,7 @@ public class view extends AppCompatActivity {
 
                 builder.setTitle(booking.getName());
                 builder.setMessage(booking.getContact());
-                //builder.setMessage(hostal.getAge());
-                //builder.setMessage(hostal.getGender());
+
 
 
 

@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class update extends AppCompatActivity {
@@ -44,8 +42,6 @@ public class update extends AppCompatActivity {
         contact2.setText(booking.getContact());
         age2.setText(booking.getAge());
         gender2.setText(booking.getGender());
-        // RadioButton checkBtn = findViewById(gender2.getCheckedRadioButtonId());
-        //String edit_rad  = checkBtn.getText().toString();
 
 
         edit_button2.setOnClickListener(new View.OnClickListener() {
@@ -64,8 +60,6 @@ public class update extends AppCompatActivity {
                 String edit_contact = contact2.getText().toString();
                 String edit_age = age2.getText().toString();
                 String edit_gender = gender2.getText().toString();
-                //  RadioButton checkBtn = findViewById(gender2.getCheckedRadioButtonId());
-                // String edit_rad  = checkBtn.getText().toString();
 
                 updateDate = System.currentTimeMillis();
 

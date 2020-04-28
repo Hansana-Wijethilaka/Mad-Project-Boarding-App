@@ -77,13 +77,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
     }
 
-    //public  int countBooking(){
-      //  SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        //String query = "SELECT * FROM "+ TABLE_NAME;
 
-        //Cursor cursor = sqLiteDatabase.rawQuery(query,null);
-        //return cursor.getCount();
-    //}
 
     public List<Booking> getAllBooking(){
 
