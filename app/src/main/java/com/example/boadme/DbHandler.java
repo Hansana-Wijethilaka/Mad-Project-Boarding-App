@@ -15,15 +15,15 @@ public class DbHandler extends SQLiteOpenHelper {
 
     private static final int VERSION = 2;
     private static final String DB_NAME = "hostal_db";
-    private static final String TABLE_NAME = "hostal_db";
+    private static final String TABLE_NAME = "booking_db";
 
-    private static final String ID = "id";
-    private static final String NAME = "name";
-    private static final String CONTACT = "contact";
-    private static final String AGE = "age";
-    private static final String GENDER = "gender";
-    private static final String STARTED = "started";
-    private static final String FINISHED = "finished";
+    private static final String BOOKING_ID = "booking_id";
+    private static final String BOOKING_NAME = "booking_name";
+    private static final String BOOKING_CONTACT = "booking_contact";
+    private static final String BOOKING_AGE = "booking_age";
+    private static final String BOOKING_GENDER = "booking_gender";
+    private static final String BOOKING_STARTED = "booking_started";
+    private static final String BOOKING_FINISHED = "booking_finished";
 
 
     public DbHandler(@Nullable Context context) {
@@ -35,13 +35,13 @@ public class DbHandler extends SQLiteOpenHelper {
 
         String TABLE_CREATE_QUERY = "CREATE TABLE "+TABLE_NAME+" " +
                 "("
-                +ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"
-                +NAME + " TEXT,"
-                +CONTACT + " TEXT,"
-                +AGE + " TEXT,"
-                +GENDER + " TEXT,"
-                +STARTED+ " TEXT,"
-                +FINISHED+ " TEXT" +
+                +BOOKING_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"
+                +BOOKING_NAME + " TEXT,"
+                +BOOKING_CONTACT + " TEXT,"
+                +BOOKING_AGE + " TEXT,"
+                +BOOKING_GENDER + " TEXT,"
+                +BOOKING_STARTED+ " TEXT,"
+                +BOOKING_FINISHED+ " TEXT" +
                 ");";
 
         sqLiteDatabase.execSQL(TABLE_CREATE_QUERY);
@@ -51,43 +51,43 @@ public class DbHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
-        String DROP_TABLE_QUERY = "DROP TABLE IF EXISTS "+ TABLE_NAME;
+        String DROP_TABLE_QUERY_Booking = "DROP TABLE IF EXISTS "+ TABLE_NAME;
 
-        sqLiteDatabase.execSQL(DROP_TABLE_QUERY);
+        sqLiteDatabase.execSQL(DROP_TABLE_QUERY_Booking);
 
         onCreate(sqLiteDatabase);
 
     }
 
-    public void add_Hostal(Hostal hostal){
+    public void add_Booking(Booking booking){
 
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(NAME,hostal.getName());
-        contentValues.put(CONTACT,hostal.getContact());
-        contentValues.put(AGE,hostal.getAge());
-        contentValues.put(GENDER,hostal.getGender());
-        contentValues.put(STARTED,hostal.getStarted());
-        contentValues.put(FINISHED,hostal.getFinished());
+        contentValues.put(BOOKING_NAME,booking.getName());
+        contentValues.put(BOOKING_CONTACT,booking.getContact());
+        contentValues.put(BOOKING_AGE,booking.getAge());
+        contentValues.put(BOOKING_GENDER,booking.getGender());
+        contentValues.put(BOOKING_STARTED,booking.getStarted());
+        contentValues.put(BOOKING_FINISHED,booking.getFinished());
 
         sqLiteDatabase.insert(TABLE_NAME, null,contentValues);
         sqLiteDatabase.close();
 
     }
 
-    public  int countHostal(){
-        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        String query = "SELECT * FROM "+ TABLE_NAME;
+    //public  int countBooking(){
+      //  SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        //String query = "SELECT * FROM "+ TABLE_NAME;
 
-        Cursor cursor = sqLiteDatabase.rawQuery(query,null);
-        return cursor.getCount();
-    }
+        //Cursor cursor = sqLiteDatabase.rawQuery(query,null);
+        //return cursor.getCount();
+    //}
 
-    public List<Hostal> getAllHostal(){
+    public List<Booking> getAllBooking(){
 
-        List<Hostal> hostals = new ArrayList<>();
+        List<Booking> bookings = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         String query = "SELECT * FROM "+TABLE_NAME;
 
@@ -96,42 +96,42 @@ public class DbHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()){
             do {
 
-                Hostal hostal = new Hostal();
+                Booking booking = new Booking();
 
-                hostal.setId(cursor.getInt(0));
-                hostal.setName(cursor.getString(1));
-                hostal.setContact(cursor.getString(2));
-                hostal.setAge(cursor.getString(3));
-                hostal.setGender(cursor.getString(4));
-                hostal.setStarted(cursor.getLong(5));
-                hostal.setFinished(cursor.getLong(6));
+                booking.setId(cursor.getInt(0));
+                booking.setName(cursor.getString(1));
+                booking.setContact(cursor.getString(2));
+                booking.setAge(cursor.getString(3));
+                booking.setGender(cursor.getString(4));
+                booking.setStarted(cursor.getLong(5));
+                booking.setFinished(cursor.getLong(6));
 
-                hostals.add(hostal);
+                bookings.add(booking);
 
             }while (cursor.moveToNext());
         }
-        return hostals;
+        return bookings;
     }
 
-    public void deleteHostal(int id){
+    public void delete_Booking(int id){
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
-        sqLiteDatabase.delete(TABLE_NAME,"id =?",new String[]{String.valueOf(id)});
+        sqLiteDatabase.delete(TABLE_NAME,"booking_id =?",new String[]{String.valueOf(id)});
         sqLiteDatabase.close();
     }
 
-    public Hostal getSingaleHostal(int id){
+    public Booking getSingleBooking(int id){
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
-        Cursor cursor = sqLiteDatabase.query(TABLE_NAME, new String[]{ID,NAME,CONTACT,AGE,
-                        GENDER,STARTED,FINISHED},
-                ID + "= ?",new String[]{String.valueOf(id)},null,null,null);
+        Cursor cursor = sqLiteDatabase.query(TABLE_NAME, new String[]{BOOKING_ID,BOOKING_NAME,BOOKING_CONTACT,BOOKING_AGE,
+                        BOOKING_GENDER,BOOKING_STARTED,BOOKING_FINISHED},
+                BOOKING_ID + "= ?",new String[]{String.valueOf(id)},null,null,null);
 
-        Hostal hostal;
+        Booking booking;
 
         if (cursor != null){
             cursor.moveToFirst();
-            hostal = new Hostal(
+            booking = new Booking(
                     cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),
@@ -140,28 +140,28 @@ public class DbHandler extends SQLiteOpenHelper {
                     cursor.getLong(5),
                     cursor.getLong(6)
             );
-            return hostal;
+            return booking;
 
         }
         return null;
 
     }
 
-    public int updateHostal(Hostal hostal){
+    public int update_Booking(Booking booking){
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(NAME,hostal.getName());
-        contentValues.put(CONTACT,hostal.getContact());
-        contentValues.put(AGE,hostal.getAge());
-        contentValues.put(GENDER,hostal.getGender());
-        contentValues.put(STARTED,hostal.getStarted());
-        contentValues.put(FINISHED,hostal.getFinished());
+        contentValues.put(BOOKING_NAME,booking.getName());
+        contentValues.put(BOOKING_CONTACT,booking.getContact());
+        contentValues.put(BOOKING_AGE,booking.getAge());
+        contentValues.put(BOOKING_GENDER,booking.getGender());
+        contentValues.put(BOOKING_STARTED,booking.getStarted());
+        contentValues.put(BOOKING_FINISHED,booking.getFinished());
 
         int status = sqLiteDatabase.update(TABLE_NAME,contentValues,
-                ID +" =?",
-                new String[]{String.valueOf(hostal.getId())});
+                BOOKING_ID +" =?",
+                new String[]{String.valueOf(booking.getId())});
 
         sqLiteDatabase.close();
 

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class Add extends AppCompatActivity {
     EditText name1, contact1, age1,gender1;
@@ -39,6 +40,14 @@ public class Add extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+                Context context = getApplicationContext();
+                CharSequence text = "Submit Successfully";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
                 String user_name = name1.getText().toString();
                 String user_contact = contact1.getText().toString();
                 String user_age = age1.getText().toString();
@@ -47,8 +56,8 @@ public class Add extends AppCompatActivity {
                 //   String gender2  = checkBtn.getText().toString();
                 long started = System.currentTimeMillis();
 
-                Hostal hostal = new Hostal(user_name,user_contact,user_age,user_gender,started,0);
-                dbHandler.add_Hostal(hostal);
+                Booking booking = new Booking(user_name,user_contact,user_age,user_gender,started,0);
+                dbHandler.add_Booking(booking);
 
                 startActivity(new Intent(context,view.class));
 

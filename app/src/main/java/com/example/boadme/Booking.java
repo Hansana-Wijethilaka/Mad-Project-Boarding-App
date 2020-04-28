@@ -1,23 +1,17 @@
 package com.example.boadme;
 
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+public class Booking {
 
-public class Hostal {
-
-    private int id;
-    private String name, contact, age, gender;
-    private long started, finished;
-
-    public Hostal(){
+    private  int id;
+    private String name,contact,age,gender;
+    private long started,finished;
 
 
+    public Booking() {
 
     }
 
-
-    public Hostal(int id, String name, String contact, String age, String gender, long started, long finished) {
+    public Booking(int id, String name, String contact, String age, String gender, long started, long finished) {
         this.id = id;
         this.name = name;
         this.contact = contact;
@@ -27,7 +21,7 @@ public class Hostal {
         this.finished = finished;
     }
 
-    public Hostal(String name, String contact, String age, String gender, long started, long finished) {
+    public Booking(String name, String contact, String age, String gender, long started, long finished) {
         this.name = name;
         this.contact = contact;
         this.age = age;

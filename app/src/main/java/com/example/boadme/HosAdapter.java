@@ -13,13 +13,13 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-public class HosAdapter extends ArrayAdapter<Hostal> {
+public class HosAdapter extends ArrayAdapter<Booking> {
 
     private Context context;
     private int resource;
-    List<Hostal> hostals;
+    List<Booking> hostals;
 
-    HosAdapter(Context context, int resource, List<Hostal> hostals) {
+    HosAdapter(Context context, int resource, List<Booking> hostals) {
         super(context, resource, hostals);
         this.context = context;
         this.resource = resource;
@@ -38,11 +38,11 @@ public class HosAdapter extends ArrayAdapter<Hostal> {
         TextView gend = row.findViewById(R.id.view_gender);
 
 
-        Hostal hostal = hostals.get(position);
-        name.setText(hostal.getName());
-        contac.setText(hostal.getContact());
-        age.setText(hostal.getAge());
-        gend.setText(hostal.getGender());
+        Booking booking = hostals.get(position);
+        name.setText(booking.getName());
+        contac.setText(booking.getContact());
+        age.setText(booking.getAge());
+        gend.setText(booking.getGender());
 
 
 

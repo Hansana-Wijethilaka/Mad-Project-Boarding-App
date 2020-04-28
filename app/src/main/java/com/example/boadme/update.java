@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class update extends AppCompatActivity {
 
@@ -36,13 +37,13 @@ public class update extends AppCompatActivity {
 
         edit_button2 = findViewById(R.id.btn_2);
 
-        final String id = getIntent().getStringExtra("id");
-        Hostal hostal = dbHandler.getSingaleHostal(Integer.parseInt(id));
+        final String id = getIntent().getStringExtra("booking_id");
+        Booking booking = dbHandler.getSingleBooking(Integer.parseInt(id));
 
-        name2.setText(hostal.getName());
-        contact2.setText(hostal.getContact());
-        age2.setText(hostal.getAge());
-        gender2.setText(hostal.getGender());
+        name2.setText(booking.getName());
+        contact2.setText(booking.getContact());
+        age2.setText(booking.getAge());
+        gender2.setText(booking.getGender());
         // RadioButton checkBtn = findViewById(gender2.getCheckedRadioButtonId());
         //String edit_rad  = checkBtn.getText().toString();
 
@@ -50,6 +51,15 @@ public class update extends AppCompatActivity {
         edit_button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Context context = getApplicationContext();
+                CharSequence text = "Update Successfully";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
+
                 String edit_name = name2.getText().toString();
                 String edit_contact = contact2.getText().toString();
                 String edit_age = age2.getText().toString();
@@ -59,8 +69,8 @@ public class update extends AppCompatActivity {
 
                 updateDate = System.currentTimeMillis();
 
-                Hostal hostal = new Hostal(Integer.parseInt(id),edit_name,edit_contact,edit_age,edit_gender,updateDate,0);
-                int state = dbHandler.updateHostal(hostal);
+                Booking booking = new Booking(Integer.parseInt(id),edit_name,edit_contact,edit_age,edit_gender,updateDate,0);
+                int state = dbHandler.update_Booking(booking);
                 startActivity(new Intent(context,view.class));
             }
         });
